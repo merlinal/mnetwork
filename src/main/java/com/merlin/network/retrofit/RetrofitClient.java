@@ -30,7 +30,7 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 
 /**
- * Created by ncm on 16/12/8.
+ * @author merlin
  */
 
 public class RetrofitClient extends IClient<Call<ResponseBody>> {
@@ -99,23 +99,26 @@ public class RetrofitClient extends IClient<Call<ResponseBody>> {
     }
 
     private void commonHttp(Call<ResponseBody> call, final MRequest request) {
+        if (request.getListener() != null) {
+            request.getListener().onProgress(30L, 100L);
+        }
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
-                NetWorker.inst().progress().updateProgress(100, 100);
+                request.getListener().onProgress(100L, 100L);
                 try {
                     ResponseBody body = response.body();
                     if (body == null) {
                         body = response.errorBody();
                     }
                     if (body == null) {
-                        fail(request, response.code(), "获取数据失败", null);
+                        fail(request, response.code() + "", "获取数据失败", null);
                     } else {
-                        MLog.i("success for http ...");
+                        MLog.i("【HTTP】success for http ...");
                         String bodyStr = body.string();
                         NetTool.parseJson(bodyStr, request.getResponseType(), request.getListener());
                         if (request.getMethod() == HttpMethod.GET) {
-                            MLog.i("add cache ...");
+                            MLog.i("【HTTP】add cache ...");
                             NetWorker.inst().cache().add(request.getKey(), bodyStr, request.getCacheTime());
                         }
                     }
@@ -126,7 +129,7 @@ public class RetrofitClient extends IClient<Call<ResponseBody>> {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                MLog.e("fail for http ...");
+                MLog.e("【HTTP】fail for http ...");
                 fail(request, HttpStatus.EMPTY, "操作失败", t);
             }
         });
@@ -167,17 +170,18 @@ public class RetrofitClient extends IClient<Call<ResponseBody>> {
 
             @Override
             public void onFailure(Call<ResponseBody> call, final Throwable t) {
-                MLog.e("fail for file download ...");
+                MLog.e("【HTTP】fail for file download ...");
                 fail(request, HttpStatus.EMPTY, "下载文件失败", t);
             }
         });
     }
 
-    private void fail(MRequest request, int code, String msg, Throwable t) {
+    private void fail(MRequest request, String code, String msg, Throwable t) {
         if (request.getListener() != null) {
-            request.getListener().onFailure(code, msg, t);
+            request.getListener().onProgress(100L, 100L);
+            request.getListener().onFailure(code, msg);
+            t.printStackTrace();
         }
-        NetWorker.inst().progress().hideProgress();
     }
 
     @Override

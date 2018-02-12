@@ -12,7 +12,7 @@ import com.merlin.network.http.NetWorker;
 
 
 /**
- * Created by ncm on 16/12/15.
+ * @author merlin
  */
 
 public class CacheTask extends AsyncTask<String, Void, String> implements IRequest {
@@ -41,9 +41,8 @@ public class CacheTask extends AsyncTask<String, Void, String> implements IReque
             request.cacheTime(0);
             NetWorker.inst().execute(request);
         } else {
-            MLog.e("from cache ... " + result);
+            MLog.e("【HTTP】from cache ... " + result);
             request.requestHandle(this);
-            NetWorker.inst().progress().updateProgress(100, 100);
             if (request.getMethod() == HttpMethod.GET) {
                 NetTool.parseJson(result, request.getResponseType(), request.getListener());
             } else if (request.getMethod() == HttpMethod.DOWNLOAD) {
@@ -55,6 +54,11 @@ public class CacheTask extends AsyncTask<String, Void, String> implements IReque
     @Override
     public void cancel() {
         cancel(true);
+    }
+
+    @Override
+    public boolean isCanceled() {
+        return isCancelled();
     }
 
 }

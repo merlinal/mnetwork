@@ -7,15 +7,15 @@ package com.merlin.network.http;
 public class HttpStatus {
 
     //http_statusCode
-    public final static int OK = 0;  //成功
-    public final static int NOT_FOUND = 404;  //请求不存在
-    public final static int SERVER_ERROR = 500;  //服务器报错
-    public final static int SERVICE_AVAILABLE = 503;  //服务不可用
+    public final static String OK = "0";  //成功
+    public final static String NOT_FOUND = "404";  //请求不存在
+    public final static String SERVER_ERROR = "500";  //服务器报错
+    public final static String SERVICE_AVAILABLE = "503";  //服务不可用
 
     //自定义
-    public final static int EMPTY = 0x1101;  //response为空
-    public final static int UNPARSE = 0x1102;  //response不能转化
-    public final static int EXCEPTION = 0x1103;  //response报错
+    public final static String EMPTY = "0x1101";  //response为空
+    public final static String UNPARSE = "0x1102";  //response不能转化
+    public final static String EXCEPTION = "0x1103";  //response报错
 
 
     /**

@@ -1,22 +1,27 @@
-package com.merlin.network.test;
+package com.merlin.network.http.response;
+
+import com.merlin.network.http.HttpStatus;
 
 /**
  * Created by ncm on 16/12/9.
  */
 
 public class Result<T> {
-    private int status_code;
+    private String code;
     private String message;
     private Error error;
     private T data;
-    private int member_status;
 
-    public int getStatus_code() {
-        return status_code;
+    public boolean isSuccess(){
+        return code != null && code.equals(HttpStatus.OK);
     }
 
-    public void setStatus_code(int status_code) {
-        this.status_code = status_code;
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getMessage() {
@@ -41,13 +46,5 @@ public class Result<T> {
 
     public void setData(T data) {
         this.data = data;
-    }
-
-    public int getMemberStatus() {
-        return member_status;
-    }
-
-    public void setMemberStatus(int member_status) {
-        this.member_status = member_status;
     }
 }

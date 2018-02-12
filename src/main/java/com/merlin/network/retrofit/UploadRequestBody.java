@@ -15,9 +15,10 @@ import okio.Okio;
 import okio.Sink;
 
 /**
- * Created by Administrator on 2016/9/21 0021.
+ * @author merlin
  */
 public class UploadRequestBody extends RequestBody {
+
     private RequestBody mRequestBody;
     private BufferedSink bufferedSink;
     private IResponse iResponse;
@@ -32,7 +33,12 @@ public class UploadRequestBody extends RequestBody {
         return mRequestBody.contentType();
     }
 
-    //返回了本RequestBody的长度，也就是上传的totalLength
+    /**
+     * 返回了本RequestBody的长度，也就是上传的totalLength
+     *
+     * @return
+     * @throws IOException 异常
+     */
     @Override
     public long contentLength() throws IOException {
         return mRequestBody.contentLength();

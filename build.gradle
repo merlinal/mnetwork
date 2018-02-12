@@ -6,9 +6,10 @@ group = 'com.github.merlinal'
 buildscript {
     repositories {
         jcenter()
+        maven { url 'https://maven.google.com' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        //classpath 'com.android.tools.build:gradle:3.0.1'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -25,7 +26,6 @@ allprojects {
 //task clean(type: Delete) {
 //    delete rootProject.buildDir
 //}
-
 
 
 android {
@@ -53,9 +53,21 @@ android {
 dependencies {
     //    compile fileTree(include: ['*.jar'], dir: 'libs')
     //    testCompile 'junit:junit:4.12'
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation 'com.github.merlinal:mcore:-SNAPSHOT'
-    compile 'com.squareup.picasso:picasso:2.5.2'
+
     provided 'com.android.support:appcompat-v7:27.0.2'
     provided 'com.google.code.gson:gson:2.8.2'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.github.merlinal:mcore:-SNAPSHOT'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    //glide
+    compile('com.github.bumptech.glide:glide:4.3.1', {
+        exclude group: "com.android.support"
+    })
+    compile 'com.github.bumptech.glide:okhttp3-integration:4.3.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
+    //glide 4.+ 使用 glide-transformations 3.+
+    compile 'jp.wasabeef:glide-transformations:3.0.1'
+
+
 }

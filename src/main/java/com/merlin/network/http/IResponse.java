@@ -1,21 +1,37 @@
 package com.merlin.network.http;
 
-import java.util.List;
-
 /**
- * Created by ncm on 16/12/8.
+ * @author merlin
  */
 
 public interface IResponse<T> {
 
-    void onPreExecute();
-
+    /**
+     * 成功回调
+     *
+     * @param t
+     */
     void onSuccess(T t);
 
-    void onSuccess(List<T> ts);
+    /**
+     * 失败回调
+     *
+     * @param code 返回编码
+     * @param msg  消息
+     */
+    void onFailure(String code, String msg);
 
-    void onFailure(int code, String msg, Throwable t);
+    /**
+     * 请求执行之前
+     */
+    void onPreExecute();
 
+    /**
+     * 请求进度
+     *
+     * @param total    全部
+     * @param finished 完成
+     */
     void onProgress(long total, long finished);
 
 }

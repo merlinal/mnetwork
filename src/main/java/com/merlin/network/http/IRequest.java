@@ -1,11 +1,19 @@
 package com.merlin.network.http;
 
 /**
- * Created by ncm on 16/12/8.
+ * @author merlin
  */
 
 public interface IRequest {
 
+    /**
+     * 取消
+     */
     void cancel();
+
+    /**
+     * 是否已取消
+     */
+    boolean isCanceled();
 
 }

@@ -7,7 +7,7 @@ import com.merlin.core.util.MLog;
 import java.io.File;
 
 /**
- * Created by ncm on 16/12/14.
+ * @author merlin
  */
 
 public class HttpCache implements IHttpCache {
@@ -61,7 +61,7 @@ public class HttpCache implements IHttpCache {
     public String getFilePath(String filePath, long lifeTime) {
         if (FileWorker.inst().existFile(filePath)) {
             File file = new File(filePath);
-            MLog.e("getFilePath ---- " + file.lastModified() + " / " + lifeTime + " / " + System.currentTimeMillis());
+            MLog.i("【HTTP】HttpCache getFilePath ---- " + file.lastModified() + " / " + lifeTime + " / " + System.currentTimeMillis());
             if (file.lastModified() + lifeTime > System.currentTimeMillis()) {
                 return filePath;
             }

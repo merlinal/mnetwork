@@ -2,7 +2,6 @@ package com.merlin.network.http;
 
 import com.merlin.core.util.MLog;
 import com.merlin.core.util.MVerify;
-import com.merlin.network.OnConfigChangedListener;
 import com.merlin.network.http.cache.CacheTask;
 
 import java.io.File;
@@ -30,7 +29,7 @@ public abstract class IClient<T> implements IMethod<T> {
 
     public abstract void buildClient();
 
-    public <E> MRequest<E> start(MRequest<E> request) {
+    public MRequest start(MRequest request) {
         MLog.i("Http start ... ");
         if (request.getMethod() != HttpMethod.UPLOAD && request.getMethod() != HttpMethod.DOWNLOAD) {
             if (request.getListener() != null) {
@@ -68,7 +67,7 @@ public abstract class IClient<T> implements IMethod<T> {
 
     public abstract IRequest switchHandle(T t, MRequest request);
 
-    private <E> boolean callCache(final MRequest<E> request) {
+    private boolean callCache(final MRequest request) {
         if (request.getMethod() != HttpMethod.GET && request.getMethod() != HttpMethod.DOWNLOAD) {
             return false;
         }

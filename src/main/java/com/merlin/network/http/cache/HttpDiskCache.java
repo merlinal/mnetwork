@@ -9,7 +9,7 @@ import com.merlin.core.util.MVerify;
 import java.io.File;
 
 /**
- * Created by ncm on 17/2/9.
+ * @author merlin
  */
 
 public class HttpDiskCache implements IHttpDiskCache {

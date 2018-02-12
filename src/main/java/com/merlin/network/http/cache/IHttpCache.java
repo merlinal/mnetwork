@@ -1,7 +1,7 @@
 package com.merlin.network.http.cache;
 
 /**
- * Created by ncm on 17/2/9.
+ * @author merlin
  */
 
 public interface IHttpCache {

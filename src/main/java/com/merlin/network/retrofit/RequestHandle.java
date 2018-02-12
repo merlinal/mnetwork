@@ -7,7 +7,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 
 /**
- * Created by ncm on 16/12/9.
+ * @author merlin
  */
 
 public class RequestHandle implements IRequest {
@@ -20,10 +20,15 @@ public class RequestHandle implements IRequest {
 
     @Override
     public void cancel() {
-        MLog.e("************* cancel request");
+        MLog.e("【HTTP】cancel request");
         if (!call.isCanceled()) {
             call.cancel();
         }
+    }
+
+    @Override
+    public boolean isCanceled() {
+        return call.isCanceled();
     }
 
 }

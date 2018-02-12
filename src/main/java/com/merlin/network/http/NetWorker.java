@@ -2,11 +2,10 @@ package com.merlin.network.http;
 
 import com.merlin.network.http.cache.HttpCache;
 import com.merlin.network.http.cache.IHttpCache;
-import com.merlin.network.http.progress.IProgress;
 import com.merlin.network.retrofit.RetrofitClient;
 
 /**
- * Created by ncm on 16/12/8.
+ * @author merlin
  */
 
 public class NetWorker {
@@ -25,10 +24,18 @@ public class NetWorker {
         iHttpCache = new HttpCache();
     }
 
-    private IClient iClient;  //网络请求
-    private HttpConfig httpConfig;  //网络设置
-    private IProgress iProgress;  //进度条
-    private IHttpCache iHttpCache;  //缓存
+    /**
+     * 网络请求
+     */
+    private IClient iClient;
+    /**
+     * 网络设置
+     */
+    private HttpConfig httpConfig;
+    /**
+     * 缓存
+     */
+    private IHttpCache iHttpCache;
 
     public NetWorker build() {
         iClient.addHttpConfig(httpConfig);
@@ -43,14 +50,6 @@ public class NetWorker {
         return httpConfig;
     }
 
-    public IProgress progress(IProgress iProgress) {
-        return this.iProgress = iProgress;
-    }
-
-    public IProgress progress() {
-        return iProgress;
-    }
-
     public IHttpCache cache(IHttpCache iHttpCache) {
         return this.iHttpCache = iHttpCache;
     }
@@ -60,7 +59,6 @@ public class NetWorker {
     }
 
     public MRequest execute(MRequest request) {
-        iProgress.showProgress(request.getContext(), request.getProgress());
         return iClient.start(request);
     }
 

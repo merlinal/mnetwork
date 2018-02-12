@@ -3,12 +3,15 @@ package com.merlin.network.http.cache;
 import android.support.v4.util.LruCache;
 
 /**
- * Created by ncm on 17/2/9.
+ * @author merlin
  */
 
 public class HttpMemoryCache implements IHttpMemoryCache {
 
-    private int cacheSize = 0;  //byte
+    /**
+     * byte
+     */
+    private int cacheSize = 0;
     private LruCache<String, CacheContent> cache;
 
     @Override
