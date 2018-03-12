@@ -56,8 +56,8 @@ dependencies {
     //    compile fileTree(include: ['*.jar'], dir: 'libs')
     //    testCompile 'junit:junit:4.12'
 
-    compile 'com.android.support:appcompat-v7:27.0.2'
-    compile 'com.google.code.gson:gson:2.8.2'
+    provided 'com.android.support:appcompat-v7:27.0.2'
+    provided 'com.google.code.gson:gson:2.8.2'
 
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.github.merlinal:mcore:-SNAPSHOT'
